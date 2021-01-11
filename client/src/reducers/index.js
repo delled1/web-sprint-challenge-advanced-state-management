@@ -1,6 +1,12 @@
 
 export const initialState = {
     smurfs: [],
+    addSmurf: {
+        name: "",
+        position: "",
+        nickname: "",
+        description: ""
+    },
     loading: false,
     error: ""
 }
@@ -9,19 +15,33 @@ const reducer = (state = initialState, action)=>{
     switch(action.type) {
         case "FETCHING_SMURF_START":
             return{
-                ...state
+                ...state,
+                loading: true
             }
         case "FETCHING_SMURF_END":
             return{
-                ...state
+                ...state,
+                smurf: action.payload,
+                loading: false,
+                error: ""
             }
         case "ADD_SMURF":
+            const newSmurf = {
+                name: action.payload,
+                position: action.payload,
+                nickname: action.payload,
+                description: action.payload
+            }
             return{
-                ...state
+                ...state, 
+                smurf: [...state.smurfs, newSmurf]
+                
             }
         case "FETCH_SMURFS_FAIL":
             return{
-                ...state
+                ...state,
+                loading: false,
+                error: action.payload
             }
         default: return state
     }
