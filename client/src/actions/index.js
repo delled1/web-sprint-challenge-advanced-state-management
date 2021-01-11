@@ -14,9 +14,6 @@ import axios from 'axios';
 //              - return action object setting error text
 //4. Any other actions you deem nessiary to complete application.
 
-const headers = { 
-    Accept: "application/json"
-}
 
 export const fetchSmurf = () => dispatch => {
 
@@ -24,26 +21,27 @@ export const fetchSmurf = () => dispatch => {
     dispatch({type: "FETCHING_SMURF_START"})
 
     //API
-    axios.get("http://localhost:3333/smurfs", {headers: headers})
+    axios.get("http://localhost:3333/smurfs")
     .then(res => {
         console.log(res.data)
         dispatch({type: "FETCHING_SMURF_END", payload: res.data})
     })
     .catch(err => {
         // console.log(err)
-        dispatch ({type: "FETCHING_SMURF_FAIL", payload: err.response})
+        dispatch ({type: "FETCHING_SMURF_FAIL", payload: err})
     })
 }
 
-export const addSmurf = (newSmurf) => dispatch => {
-    return(
-        dispatch => {
-            axios.post(`http://localhost:3333/smurfs`, newSmurf)
-            .then(res => {
-                console.log(res.data)
-                dispatch({type: "ADD_SMURF", payload:res.data })
+export const addSmurf = (newSmurf) => (dispatch) => {
 
-            })
-        }
-    )
+    axios.post(`http://localhost:3333/smurfs`, newSmurf)
+    .then(res => {
+        console.log(res.data)
+        dispatch({type: "ADD_SMURF", payload:res.data })
+
+    })
+    .catch(err => {
+        dispatch({type: "FETCHING_SMURF_FAIL", payload: err})
+    })
+    
 }

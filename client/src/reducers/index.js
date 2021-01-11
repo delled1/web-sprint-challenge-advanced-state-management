@@ -1,7 +1,7 @@
 
 export const initialState = {
     smurfs: [],
-    addSmurf: {
+    newSmurf: {
         name: "",
         position: "",
         nickname: "",
@@ -21,7 +21,7 @@ export const reducer = (state = initialState, action)=>{
         case "FETCHING_SMURF_END":
             return{
                 ...state,
-                smurf: action.payload,
+                smurfs: action.payload,
                 loading: false,
                 error: ""
             }
@@ -34,8 +34,7 @@ export const reducer = (state = initialState, action)=>{
             }
             return{
                 ...state, 
-                smurf: [...state.smurfs, newSmurf]
-                
+                smurfs: [...state.smurfs, newSmurf]
             }
         case "FETCH_SMURFS_FAIL":
             return{
