@@ -11,7 +11,7 @@ export const initialState = {
     error: ""
 }
 
-const reducer = (state = initialState, action)=>{
+export const reducer = (state = initialState, action)=>{
     switch(action.type) {
         case "FETCHING_SMURF_START":
             return{
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action)=>{
     }
 }
 
-export default reducer;
+
 
 //Task List:
 //1. Add in the initialState needed to hold: 
