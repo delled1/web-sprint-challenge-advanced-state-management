@@ -5,7 +5,8 @@ export const initialState = {
         name: "",
         position: "",
         nickname: "",
-        description: ""
+        description: "",
+        id: Date.now()
     },
     loading: false,
     error: ""
@@ -25,16 +26,18 @@ export const reducer = (state = initialState, action)=>{
                 loading: false,
                 error: ""
             }
-        case "ADD_SMURF":
-            const newSmurf = {
-                name: action.payload,
-                position: action.payload,
-                nickname: action.payload,
-                description: action.payload
+        case "ADD_SMURF_START":
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
             }
+        case "ADD_SMURF_SUCCESS":
             return{
-                ...state, 
-                smurfs: [...state.smurfs, newSmurf]
+                ...state,
+                loading: false,
+                error: "",
+                smurfs: action.payload
             }
         case "FETCH_SMURFS_FAIL":
             return{

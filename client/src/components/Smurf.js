@@ -1,13 +1,14 @@
 import React from 'react';
 
-function Smurf({data}) {
+function Smurf(props) {
+
 
     return(
     <div data-testid="smurf" className="card">
-        <h2>Name: {data.name}</h2>
-        <p>Position: {data.position}</p>
-        <p>Nickname: {data.nickname}</p>
-        <p>Description: {data.description}</p>
+        <h2>Name: {props.data.name}</h2>
+        <p>Position: {props.data.position}</p>
+        <p>Nickname: {props.data.nickname}</p>
+        <p>Description: {props.data.description}</p>
     </div>
     );
 }

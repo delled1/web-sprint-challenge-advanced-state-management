@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from "react-redux";
 import {fetchSmurf} from "../actions/index"
 import Smurf from "./Smurf"
 
 const SmurfDisplay = (props) => {
+
+
     return(
         <div>
             {props.smurfs.map(smurf => 
-            <Smurf data={smurf}/>
+            <Smurf data={smurf} key={smurf.id}/>
             )}
         </div>
     )

@@ -10,13 +10,13 @@ import "./App.css";
 import { connect } from "react-redux";
 
 function App (props) {
-  console.log(props)
+  // console.log(props)
 
   const [state, dispatch] = useReducer(reducer, initialState)
   
   useEffect(() => {
     props.fetchSmurf();
-    console.log(props)
+    // console.log(props)
   }, [fetchSmurf])
 
     return (
