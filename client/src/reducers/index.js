@@ -1,11 +1,55 @@
 
 export const initialState = {
+    smurfs: [],
+    newSmurf: {
+        name: "",
+        position: "",
+        nickname: "",
+        description: "",
+        id: Date.now()
+    },
+    loading: false,
+    error: ""
 }
 
-const reducer = ()=>{
+export const reducer = (state = initialState, action)=>{
+    switch(action.type) {
+        case "FETCHING_SMURF_START":
+            return{
+                ...state,
+                loading: true
+            }
+        case "FETCHING_SMURF_END":
+            return{
+                ...state,
+                smurfs: action.payload,
+                loading: false,
+                error: ""
+            }
+        case "ADD_SMURF_START":
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
+            }
+        case "ADD_SMURF_SUCCESS":
+            return{
+                ...state,
+                loading: false,
+                error: "",
+                smurfs: action.payload
+            }
+        case "FETCH_SMURFS_FAIL":
+            return{
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        default: return state
+    }
 }
 
-export default reducer;
+
 
 //Task List:
 //1. Add in the initialState needed to hold: 

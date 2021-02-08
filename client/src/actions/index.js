@@ -13,3 +13,35 @@ import axios from 'axios';
 //3. Add set error text action:
 //              - return action object setting error text
 //4. Any other actions you deem nessiary to complete application.
+
+
+export const fetchSmurf = () => dispatch => {
+
+    //dispatch fetching smurf
+    dispatch({type: "FETCHING_SMURF_START"})
+
+    //API
+    axios.get("http://localhost:3333/smurfs")
+    .then(res => {
+        // console.log(res.data)
+        dispatch({type: "FETCHING_SMURF_END", payload: res.data})
+    })
+    .catch(err => {
+        // console.log(err)
+        dispatch ({type: "FETCHING_SMURF_FAIL", payload: err})
+    })
+}
+
+export const addSmurf = (smurf) => (dispatch) =>{
+
+        axios.post("http://localhost:3333/smurfs", smurf)
+        .then(res=>{
+            console.log("add smurf:", res.data)
+            dispatch({type:"ADD_SMURF_SUCCESS", payload: res.data})
+
+        })
+        .catch(err=> {
+            console.log(err)
+            dispatch({type: "FETCHING_SMURF_FAIL", payload: err.response})
+        })
+};
